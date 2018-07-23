@@ -11,9 +11,12 @@
 #define SERVICE_PORT        50067
 #define MAX_MSG_BUF_SIZE    2000
 
+#define RETURN_SUCCESS      EXIT_SUCCESS
+#define RETURN_FAILURE      EXIT_FAILURE
+
 int main()
 {
-    int ret_val = 0;
+    int ret_val = RETURN_FAILURE;
     int sockfd = 0;
     char *buffer = NULL;
     struct sockaddr_in sa_server;
@@ -22,7 +25,7 @@ int main()
     if(0 > sockfd)
     {
         perror("call socket");
-        return 1;
+        return ret_val;
     }
 
     memset(&sa_server, 0, SOCK_ADDR_SIZE);
@@ -34,18 +37,19 @@ int main()
     if(0 > ret_val)
     {
         perror("call connect");
-        return 1;
+        return ret_val;
     }
 
     buffer = (char *)malloc(MAX_MSG_BUF_SIZE);
     if(NULL == buffer)
     {
         perror("call malloc");
-        return 1;
+        return ret_val;
     }
 
     recv(sockfd, buffer, MAX_MSG_BUF_SIZE, 0);
     printf("%s\n", buffer);
 
-    return EXIT_SUCCESS;
+    ret_val = RETURN_SUCCESS;
+    return ret_val;
 }
