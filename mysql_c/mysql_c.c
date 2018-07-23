@@ -58,10 +58,13 @@ int mysql_call_entry(MYSQL *p_db_handle)
 
     printf("Get %d rows %d columns.\n", i_row, i_col);
 
-    row = mysql_fetch_row(p_results);
-    get_column_value((void *)&buf, row, 0);
+    if(0 < i_row)
+    {
+        row = mysql_fetch_row(p_results);
+        get_column_value((void *)&buf, row, 0);
 
-    printf("column value = %s\n", buf);
+        printf("column value = %s\n", buf);
+    }
 
     mysql_free_result(p_results);
     return i_ret_val;
