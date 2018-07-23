@@ -31,7 +31,7 @@ int main()
     memset(&sa_server, 0, SOCK_ADDR_SIZE);
     sa_server.sin_family = AF_INET;
     sa_server.sin_port = htons(SERVICE_PORT);
-    sa_server.sin_addr.s_addr = inet_addr(SERVICE_IP);
+    inet_pton(AF_INET, SERVICE_IP, &sa_server.sin_addr);
 
     ret_val = connect(sockfd, (struct sockaddr *)&sa_server, SOCK_ADDR_SIZE);
     if(0 > ret_val)
