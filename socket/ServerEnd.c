@@ -71,6 +71,12 @@ int service_handle(const int sock)
     inet_ntop(AF_INET, &sa_peer.sin_addr, str_ip, INET_ADDRSTRLEN);
     printf("Get connected with %s:%d.\n", str_ip, ntohs(sa_peer.sin_port));
 
+#if TEST_NONBLOCK
+    printf("send message data, which expected to be discarded by client.");
+    send(sock, "1234567890", 10, 0);
+    sleep(10);
+#endif
+
     snprintf(buffer, MAX_MSG_BUF_SIZE, "Talk about your history.");
     send(sock, buffer, strlen(buffer), 0);
 

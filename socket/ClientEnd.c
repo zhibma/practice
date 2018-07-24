@@ -46,6 +46,13 @@ int main()
         perror("call malloc");
         return ret_val;
     }
+    memset(buffer, 0, MAX_MSG_BUF_SIZE);
+
+#ifdef TEST_NONBLOCK
+    while(0 < recv(sockfd, buffer, MAX_MSG_BUF_SIZE, MSG_DONTWAIT));
+    memset(buffer, 0, MAX_MSG_BUF_SIZE);
+    printf("clean history message success, block 10 seconds for new.\n");
+#endif
 
     recv(sockfd, buffer, MAX_MSG_BUF_SIZE, 0);
     printf("%s\n", buffer);
