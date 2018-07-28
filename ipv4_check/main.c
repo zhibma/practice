@@ -12,7 +12,7 @@ int main()
     printf("Input the ip adress: ");
     getnchar(str_ip, MAX_LINE_SIZE - 1);
 
-    if(0 != ipv4_valid_check(str_ip))
+    if(0 != ipv4_format_check(str_ip))
     {
         fprintf(stderr, "Invalid string of ip adress.\n");
         return 1;

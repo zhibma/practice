@@ -1,6 +1,6 @@
 #include <stdint.h>
 
-int8_t ipv4_valid_check(char *str)
+int8_t ipv4_format_check(char *str)
 {
     uint8_t i = 0;
     uint8_t num = 0;

@@ -3,6 +3,6 @@
 
 #include <stdint.h>
 
-extern int8_t ipv4_valid_check(char *str);
+extern int8_t ipv4_format_check(char *str);
 
 #endif
