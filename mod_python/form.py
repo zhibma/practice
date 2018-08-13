@@ -34,7 +34,7 @@ html_form = """
 
 def index(req):
 
-    argv = util.FieldStorage(req);
+    argv = util.FieldStorage(req)
     text = argv["text"].value
     name = argv["name"].value
     index = int(argv["index"].value)
